@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Kloset</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Is Available</th> <!-- Make it so 0 and 1 are formatted to y/n? -->
-            <th>Branch ID</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Daily Rate</th>
-            <th>Category</th>
-        </tr>
-
         <?php
             require_once("db.php");
 
@@ -26,7 +26,24 @@
 
             $result = mysqli_query($con, $query);
 
-            while ($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result) == 0)
+            {
+                echo "<p>No costumes with the provided ID!</p>";
+            }
+            else
+            {
+
+                echo "<tr>";
+                echo "<th>ID</th>";
+                echo "<th>Is Available</th>";
+                echo "<th>Branch ID</th>";
+                echo "<th>Name</th>";
+                echo "<th>Size</th>";
+                echo "<th>Daily Rate</th>";
+                echo "<th>Category</th>";
+                echo "</tr>";
+
+                $row = mysqli_fetch_assoc($result);
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
                 if ($row['is_available'] == "1") {
@@ -45,6 +62,6 @@
         ?>
     </table>
 
-    <a href="index.php"><-- Back</a>
+    <a href="index.php"><button><-- Back</button></a>
 </body>
 </html>
