@@ -32,7 +32,12 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['is_available'] . "</td>";
+                if ($row['is_available'] == "1") {
+                    echo "<td>Yes</td>";
+                }
+                else {
+                    echo "<td>No</td>";
+                }
                 echo "<td>" . $row['branch_id'] . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['size'] . "</td>";
@@ -41,8 +46,31 @@
                 echo "</tr>";
             };
         ?>
-
     </table>
+
+    <form action="rentals.php" method="GET">
+        <label for="costume_id">Costume ID</label>
+        <input type="number" name="costume_id" id="costume_id" placeholder="Costume ID" required>
+    </form>
+
+    <form action="add.php" method="POST">
+        <label for="new_id">Costume ID</label>
+        <input type="number" name="new_costume_id" id="new_costume_id" required>
+        <!-- Maybe just default to 1? And see if ID can be autoset too -->
+        <label for="is_available">Is Available</label>
+        <input type="number" name="is_available" id="is_available" required>
+        <label for="branch_id">Branch ID</label>
+        <input type="number" name="branch_id" id="branch_id" required>
+        <label for="name">Name</label>
+        <input type="text" name="costume_name" id="costume_name" required>
+        <label for="size">Size</label>
+        <input type="text" name="size" id="size" required>
+        <label for="daily_rate">Daily Rate</label>
+        <input type="number" name="daily_rate" id="daily_rate" required>
+        <!-- Maybe a dropdown? -->
+        <label for="category">Category</label>
+        <input type="text" name="category" id="category" required>
+    </form>
 
     <!-- form that takes a costume id, sends a GET to rentals.php -->
 
