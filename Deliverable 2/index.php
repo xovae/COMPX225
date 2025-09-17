@@ -26,6 +26,9 @@
         <?php
             require_once("db.php");
 
+            $query = "SELECT * FROM `costumes`";
+            $result = mysqli_query($con, $query);
+
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
@@ -37,7 +40,6 @@
                 echo "<td>" . $row['category'] . "</td>";
                 echo "</tr>";
             };
-
         ?>
 
     </table>
