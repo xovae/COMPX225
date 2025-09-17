@@ -22,7 +22,7 @@
 
             $costume_id = $_GET['costume_id'];
 
-            $query = "SELECT * FROM `costumes` WHERE id = $costume_id"
+            $query = "SELECT * FROM `costumes` WHERE id = $costume_id";
 
             $result = mysqli_query($con, $query);
 

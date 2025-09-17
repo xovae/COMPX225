@@ -61,7 +61,7 @@
         <input type="number" name="is_available" id="is_available" required>
         <label for="branch_id">Branch ID</label>
         <input type="number" name="branch_id" id="branch_id" required>
-        <label for="name">Name</label>
+        <label for="costume_name">Name</label>
         <input type="text" name="costume_name" id="costume_name" required>
         <label for="size">Size</label>
         <input type="text" name="size" id="size" required>
