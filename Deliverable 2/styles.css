@@ -1,33 +1,57 @@
 html, body {
     margin: 0;
+    box-sizing: border-box;
     font-family: "Comfortaa", sans-serif;
+    overflow-x: hidden;
+    background-color: rgb(250, 229, 229);
 }
 
 #header {
+    width: 100%;
     padding: 5px;
     text-align: center;
-    background-color: #87F1FF;
+    background-color: #fc5757;
+    border-bottom: 1px solid black;
 }
 
 #body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
 }
 
-#add {
-    width: 100%;
+.form_centre {
+    text-align: center;
 }
 
-h2 {
+.form_row {
+    margin-bottom: 10px;
+}
+
+.form_row input, select {
+    margin-right: 5px;
+}
+
+h2, p {
     text-align: center;
 }
 
 table, th, td {
     margin: auto;
+    margin-top: 10px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 td {
     padding: 4px;
+}
+
+#result {
+    display: grid;
+    grid-template-rows: 1fr;
+    place-items: center;
+}
+
+#result button {
+    margin-top: 10px;
 }
