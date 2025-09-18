@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiwi Kloset</title>
 
     <link rel="stylesheet" href="styles.css">
@@ -25,7 +21,7 @@
 
         $costume_id = $_GET['costume_id'];
 
-        $query = "SELECT * FROM `costumes` WHERE id = $costume_id";
+        $query = "SELECT * FROM `rental` WHERE id = $costume_id";
 
         $result = mysqli_query($con, $query);
 
@@ -35,7 +31,6 @@
         }
         else
         {
-
             echo "<h1>Costume Found!</h1>";
 
             echo "<table>";
@@ -49,21 +44,24 @@
             echo "<th>Category</th>";
             echo "</tr>";
 
-            $row = mysqli_fetch_assoc($result);
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            if ($row['is_available'] == "1") {
-                echo "<td>Yes</td>";
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                if ($row['is_available'] == "1") {
+                    echo "<td>Yes</td>";
+                }
+                else
+                {
+                    echo "<td>No</td>";
+                }
+                echo "<td>" . $row['branch_id'] . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['size'] . "</td>";
+                echo "<td>" . $row['daily_rate'] . "</td>";
+                echo "<td>" . $row['category'] . "</td>";
+                echo "</tr>";
             }
-            else {
-                echo "<td>No</td>";
-            }
-            echo "<td>" . $row['branch_id'] . "</td>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['size'] . "</td>";
-            echo "<td>" . $row['daily_rate'] . "</td>";
-            echo "<td>" . $row['category'] . "</td>";
-            echo "</tr>";
             echo "</table>";
         }
     ?>
