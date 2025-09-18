@@ -14,21 +14,12 @@ html, body {
     grid-template-columns: 1fr 1fr;
 }
 
-form {
-    width: 50%;
-    margin: 0 auto;
-}
-
-.buttons {
-
+#add {
+    width: 100%;
 }
 
 h2 {
     text-align: center;
-}
-
-label:first-child, button:first-child {
-    margin-left: 10px;
 }
 
 table, th, td {
