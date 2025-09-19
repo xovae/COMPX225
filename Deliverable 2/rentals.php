@@ -21,45 +21,37 @@
 
         $costume_id = $_GET['costume_id'];
 
-        $query = "SELECT * FROM `rental` WHERE id = $costume_id";
+        $query = "SELECT * FROM `rentals` WHERE costume_id = $costume_id";
 
         $result = mysqli_query($con, $query);
 
         if (mysqli_num_rows($result) == 0)
         {
-            echo "<h1>No costumes with the provided ID!</h1>";
+            echo "<h1>There are no rentals for the provided ID!</h1>";
         }
         else
         {
-            echo "<h1>Costume Found!</h1>";
+            $query = "SELECT `name` FROM `costumes` WHERE id = $costume_id";
+
+            $costume_name = mysqli_fetch_assoc(mysqli_query($con, $query));
+
+            echo "<h2>Rentals for: " . $costume_name['name'] . "</h2>";
 
             echo "<table>";
             echo "<tr>";
-            echo "<th>ID</th>";
-            echo "<th>Is Available</th>";
-            echo "<th>Branch ID</th>";
-            echo "<th>Name</th>";
-            echo "<th>Size</th>";
-            echo "<th>Daily Rate</th>";
-            echo "<th>Category</th>";
+            echo "<th>Booking ID</th>";
+            echo "<th>Start Date</th>";
+            echo "<th>End Date</th>";
+            echo "<th>Customer ID</th>";
             echo "</tr>";
 
             while ($row = mysqli_fetch_assoc($result))
             {
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
-                if ($row['is_available'] == "1") {
-                    echo "<td>Yes</td>";
-                }
-                else
-                {
-                    echo "<td>No</td>";
-                }
-                echo "<td>" . $row['branch_id'] . "</td>";
-                echo "<td>" . $row['name'] . "</td>";
-                echo "<td>" . $row['size'] . "</td>";
-                echo "<td>" . $row['daily_rate'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
+                echo "<td>" . $row['start_datetime'] . "</td>";
+                echo "<td>" . $row['end_datetime'] . "</td>";
+                echo "<td>" . $row['customer_id'] . "</td>";
                 echo "</tr>";
             }
             echo "</table>";

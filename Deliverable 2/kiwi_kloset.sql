@@ -4,7 +4,7 @@ use jb469;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS branches;
 DROP TABLE IF EXISTS costumes;
-DROP TABLE IF EXISTS rental;
+DROP TABLE IF EXISTS rentals;
 
 CREATE TABLE customers (
 	id INT PRIMARY KEY,
