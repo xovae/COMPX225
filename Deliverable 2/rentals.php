@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiwi Kloset</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,10 @@
 <body id="result">
     <div id="header">
         <h1>Kiwi Kloset</h1>
+
+        <ul id="nav_bar">
+            <li class="nav_li"><a href="index.php">Home</a></li>
+        </ul>
     </div>
 
     <?php
