@@ -26,11 +26,15 @@
 
         $costume_id = $_GET['costume_id'];
 
-        $query = "SELECT * FROM `rentals` WHERE costume_id = $costume_id";
+        $query = "SELECT * FROM `rentals` WHERE costume_id = ?";
 
-        $result = mysqli_query($con, $query);
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt,"d", $costume_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $result);
+        mysqli_stmt_fetch($stmt);
 
-        if (mysqli_num_rows($result) == 0)
+        if ($result)
         {
             echo "<h1>There are no rentals for the provided ID!</h1>";
         }

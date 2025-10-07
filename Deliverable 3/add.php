@@ -26,11 +26,15 @@
 
         $costume_id = $_POST['new_costume_id'];
 
-        $query = "SELECT * FROM `costumes` WHERE id = $costume_id";
+        $query = "SELECT id FROM `costumes` WHERE id = ?";
 
-        $result = mysqli_query($con, $query);
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt,"d", $costume_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $result);
+        mysqli_stmt_fetch($stmt);
 
-        if (mysqli_num_rows($result) != 0)
+        if ($result != null)
         {
             echo "<h1>A costume with the provided ID already exists!</h1>";
         }
