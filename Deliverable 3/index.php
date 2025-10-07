@@ -14,9 +14,10 @@
 <body>
     <div id="header">
         <h1>Kiwi Kloset</h1>
-    
+
         <ul id="nav_bar">
             <li class="nav_li"><a id="active" href="#">Home</a></li>
+            <li class="nav_li"><a href="statistics.php">Stats</a></li>
         </ul>
     </div>
 
@@ -31,12 +32,12 @@
                 $query = "SELECT * FROM `costumes`";
                 $result = mysqli_query($con, $query);
 
-                // Handle the query failing 
-                if ($result == false) 
+                // Handle the query failing
+                if ($result == false)
                 {
                     echo "<p>Could not connect to the database!</p>";
                 }
-                else 
+                else
                 {
                     echo "<table>";
                     echo "<tr>";

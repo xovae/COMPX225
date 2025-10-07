@@ -17,6 +17,7 @@
 
         <ul id="nav_bar">
             <li class="nav_li"><a href="index.php">Home</a></li>
+            <li class="nav_li"><a href="statistics.php">Stats</a></li>
         </ul>
     </div>
 

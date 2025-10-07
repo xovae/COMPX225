@@ -64,7 +64,7 @@ li a:hover:not(#active) {
     margin-right: 5px;
 }
 
-h2, p {
+h1, h2, p {
     text-align: center;
 }
 
@@ -79,6 +79,12 @@ table, th, td {
 #result {
     display: grid;
     grid-template-rows: 1fr;
+    place-items: center;
+}
+
+#stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
 }
 
