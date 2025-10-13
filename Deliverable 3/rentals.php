@@ -29,22 +29,29 @@
         $query = "SELECT * FROM `rentals` WHERE costume_id = ?";
 
         $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt,"d", $costume_id);
+        mysqli_stmt_bind_param($stmt,"i", $costume_id);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $result);
-        mysqli_stmt_fetch($stmt);
-
-        if ($result)
+        mysqli_stmt_store_result($stmt);
+        
+        if (mysqli_stmt_num_rows($stmt) === 0)
         {
             echo "<h1>There are no rentals for the provided ID!</h1>";
+            mysqli_stmt_close($stmt);
         }
         else
         {
-            $query = "SELECT `name` FROM `costumes` WHERE id = $costume_id";
+            mysqli_stmt_bind_result($stmt, $id, $start_datetime, $end_datetime, $costume_id, $customer_id);
+        
+            $query = "SELECT `name` FROM `costumes` WHERE id = ?";
+            
+            $costume_stmt = mysqli_prepare($con, $query);
+            mysqli_stmt_bind_param($costume_stmt,"i", $costume_id);
+            mysqli_stmt_execute($costume_stmt);
+            mysqli_stmt_bind_result($costume_stmt, $costume_name);
+            mysqli_stmt_fetch($costume_stmt);
+            mysqli_stmt_close($costume_stmt);
 
-            $costume_name = mysqli_fetch_assoc(mysqli_query($con, $query));
-
-            echo "<h2>Rentals for: " . $costume_name['name'] . "</h2>";
+            echo "<h2>Rentals for: " . htmlspecialchars($costume_name) . "</h2>";
 
             echo "<table>";
             echo "<tr>";
@@ -54,13 +61,13 @@
             echo "<th>Customer ID</th>";
             echo "</tr>";
 
-            while ($row = mysqli_fetch_assoc($result))
+            while (mysqli_stmt_fetch($stmt))
             {
                 echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['start_datetime'] . "</td>";
-                echo "<td>" . $row['end_datetime'] . "</td>";
-                echo "<td>" . $row['customer_id'] . "</td>";
+                echo "<td>" . htmlspecialchars($id) . "</td>";
+                echo "<td>" . htmlspecialchars($start_datetime) . "</td>";
+                echo "<td>" . htmlspecialchars($end_datetime) . "</td>";
+                echo "<td>" . htmlspecialchars($customer_id) . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
